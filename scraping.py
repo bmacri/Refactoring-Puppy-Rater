@@ -5,7 +5,8 @@ import urllib2
 domain = "http://www.sfspca.org" 
 
 def url_contents(url):
-    soup = BeautifulSoup(urllib2.urlopen(url)) 
+    soup = BeautifulSoup(urllib2.urlopen(url))
+    soup.url = url 
     return soup
 
      
@@ -30,18 +31,18 @@ def dog_description(soup):
 def goto_next_page(soup):
     liitem = [x for x in soup.find_all("li") if "pager-next" in x['class']]
     if liitem == []:
-        return domain + parent(soup) #need a way to extract the url that created soup
+        return soup.url
     next_url = domain + liitem[0].find_all('a')[0]['href']           
     return next_url
 
-soup = url_contents('http://www.sfspca.org/adoptions/dogs')
-print goto_next_page(soup)
-
-#soup = url_contents('http://www.sfspca.org/adoptions/dogs?page=2')
+#soup = url_contents('http://www.sfspca.org/adoptions/dogs')
 #print goto_next_page(soup)
 
+soup = url_contents('http://www.sfspca.org/adoptions/dogs?page=2')
+print goto_next_page(soup)
 
-def dog_name(soup):
+
+'''def dog_name(soup):
     names = soup.find_all("p", "class")
     print 'names is %s' % names
     return 
