@@ -27,16 +27,18 @@ def dog_description(soup):
 
 #------------------------------------------------------------------------    
     
-'''def goto_next_page(soup):
-    l = soup.find_all("li")
-    liitem = [x for x in l if "pager-next" in x['class']]
-    soup = BeautifulSoup('liitem')
-    print soup, type(soup)
-    return liitem
+def goto_next_page(soup):
+    liitem = [x for x in soup.find_all("li") if "pager-next" in x['class']]
+    if liitem == []:
+        return domain + parent(soup) #need a way to extract the url that created soup
+    next_url = domain + liitem[0].find_all('a')[0]['href']           
+    return next_url
 
 soup = url_contents('http://www.sfspca.org/adoptions/dogs')
-goto_next_page(soup)'''
+print goto_next_page(soup)
 
+#soup = url_contents('http://www.sfspca.org/adoptions/dogs?page=2')
+#print goto_next_page(soup)
 
 
 def dog_name(soup):
@@ -50,7 +52,7 @@ dog_name(soup)
 
     
 
-'''def dog_id(soup):
+def dog_id(soup):
     
     return spca_id
     
@@ -72,7 +74,7 @@ def dog_color(soup):
 
 def dog_age(soup):
    
-    return age
+    return age'''
     
 def dog_details(soup):
     detail_dict = {}
@@ -94,8 +96,9 @@ assert dog_url_list[0] == ('http://www.sfspca.org/adoptions/pet-details/10424952
 
 soup = url_contents('http://www.sfspca.org/adoptions/pet-details/16213392-0')
 
-assert get_dog_image(soup) == 'http://www.sfspca.org/sites/default/files/imagecache/animal_profile_default/photos/6bfb81a3-a8fd-4a88-b686-608cf8bd13b3_TN1.jpg'
-assert dog_description(soup) == "Tika was a great mom to 2 beautiful puppies that have all found wonderful new homes.  Now it's her turn to find a family. Tika is a bright and active young dog, hoping to find a home with adopters who'll be able provide her with plenty of opportunities for both mental and physical exercise on a daily basis. Attending training classes will be a great way for her to learn the skills needed to become a well mannered companion!  Her favorite activity is to play with other dogs and to get snuggles and belly rubs from her special people.  This girl is going to make some lucky family a great pet!", dog_description(soup)'''
+#assert get_dog_image(soup) == 'http://www.sfspca.org/sites/default/files/imagecache/animal_profile_default/photos/6bfb81a3-a8fd-4a88-b686-608cf8bd13b3_TN1.jpg', get_dog_image(soup)
+
+#assert dog_description(soup) == "Tika was a great mom to 2 beautiful puppies that have all found wonderful new homes.  Now it's her turn to find a family. Tika is a bright and active young dog, hoping to find a home with adopters who'll be able provide her with plenty of opportunities for both mental and physical exercise on a daily basis. Attending training classes will be a great way for her to learn the skills needed to become a well mannered companion!  Her favorite activity is to play with other dogs and to get snuggles and belly rubs from her special people.  This girl is going to make some lucky family a great pet!", dog_description(soup)
 
 
 
