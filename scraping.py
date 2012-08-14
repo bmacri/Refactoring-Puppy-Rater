@@ -92,12 +92,9 @@ assert goto_next_page(soup) == 'http://www.sfspca.org/adoptions/dogs?page=1', go
 
 soup = url_contents('http://www.sfspca.org/adoptions/pet-details/16213392-0')
 
-#assert get_dog_image(soup) == 'http://www.sfspca.org/sites/default/files/imagecache/animal_profile_default/photos/6bfb81a3-a8fd-4a88-b686-608cf8bd13b3_TN1.jpg', get_dog_image(soup)
+assert get_dog_image(soup) == 'http://www.sfspca.org/sites/default/files/imagecache/animal_profile_default/photos/6bfb81a3-a8fd-4a88-b686-608cf8bd13b3_172.jpg', get_dog_image(soup)
 
-#assert dog_description(soup) == "Tika was a great mom to 2 beautiful puppies that have all found wonderful new homes.  Now it's her turn to find a family. Tika is a bright and active young dog, hoping to find a home with adopters who'll be able provide her with plenty of opportunities for both mental and physical exercise on a daily basis. Attending training classes will be a great way for her to learn the skills needed to become a well mannered companion!  Her favorite activity is to play with other dogs and to get snuggles and belly rubs from her special people.  This girl is going to make some lucky family a great pet!", dog_description(soup)
-
-#soup = url_contents('http://www.sfspca.org/adoptions/dogs')
-#print goto_next_page(soup)
+assert dog_description(soup) == "Tika was a great mom to 2 beautiful puppies that have all found wonderful new homes.  Now it's her turn to find a family. Tika is a bright and active young dog, hoping to find a home with adopters who'll be able provide her with plenty of opportunities for both mental and physical exercise on a daily basis. Attending training classes will be a great way for her to learn the skills needed to become a well mannered companion!  Her favorite activity is to play with other dogs and to get snuggles and belly rubs from her special people.  This girl is going to make some lucky family a great pet!", dog_description(soup)
 
 soup = url_contents('http://www.sfspca.org/adoptions/dogs?page=2')
 assert goto_next_page(soup) == 'http://www.sfspca.org/adoptions/dogs?page=2', goto_next_page(soup)
